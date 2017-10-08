@@ -6,7 +6,6 @@
 		display: block;
 		margin-bottom: 2rem;
 		padding-left: 0.5rem;
-		padding-left: 0.5rem;
 
 	}
 
@@ -19,8 +18,7 @@
 	}
 
 	&__item-details {
-		padding-top: 0.5rem;
-		padding-bottom: 0.5rem;
+		padding: 0.5rem 0;
 
 		.feed__item-user {
 			text-align: left;
