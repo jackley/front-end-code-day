@@ -15,7 +15,6 @@ import webpack from 'webpack';
 
 const reload = browserSync.reload;
 
-
 // configuration
 const config = {
 	templates: {
@@ -37,13 +36,16 @@ const config = {
 		watch: 'src/assets/styles/**/*',
 		browsers: ['last 1 version']
 	},
+	images: {
+		src: 'src/assets/images/**/*',
+		dest: 'dist/assets/images',
+		watch: 'src/assets/images/**/*',
+	},
 	dev: gutil.env.dev
 };
 
-
 // clean
 gulp.task('clean', del.bind(null, ['dist']));
-
 
 // templates
 gulp.task('templates', (done) => {
@@ -63,6 +65,12 @@ gulp.task('templates', (done) => {
 	done();
 });
 
+// images
+gulp.task('images', (done) => {
+	return gulp.src(config.images.src)
+		.pipe(gulp.dest(config.images.dest))
+		.pipe(gulpif(config.dev, reload({ stream: true })));
+});
 
 // scripts
 const webpackConfig = require('./webpack.config')(config);
@@ -89,7 +97,6 @@ gulp.task('lint', (done) => {
 		.pipe(gulpif(!config.dev, eslint.failAfterError()));
 });
 
-
 // styles
 gulp.task('styles', () => {
 	return gulp.src(config.styles.src)
@@ -105,7 +112,6 @@ gulp.task('styles', () => {
 		.pipe(gulp.dest(config.styles.dest))
 		.pipe(gulpif(config.dev, reload({ stream: true })));
 });
-
 
 // server
 gulp.task('serve', () => {
@@ -127,8 +133,9 @@ gulp.task('serve', () => {
 	gulp.task('scripts:watch', ['scripts'], reload);
 	gulp.watch(config.scripts.watch, ['scripts:watch']);
 
+	gulp.task('images:watch', ['images'], reload);
+	gulp.watch(config.images.watch, ['images:watch']);
 });
-
 
 // default build task
 gulp.task('default', ['clean', 'lint'], () => {
@@ -138,6 +145,7 @@ gulp.task('default', ['clean', 'lint'], () => {
 		'templates',
 		'scripts',
 		'styles',
+		'images',
 	];
 
 	// run build
