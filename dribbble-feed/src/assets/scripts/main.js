@@ -23,7 +23,7 @@ const DOM = {
 	button: document.querySelector('[data-js-load-shots-button]'),
 
 	// container for the templated HTML
-	feedContainer: document.querySelector('#dribbble-feed')
+	feedContainer: document.querySelector('[data-js-dribbble-feed]')
 
 };
 
