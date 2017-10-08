@@ -35,7 +35,8 @@ export default function (items) {
 		<div class="feed">
 			${items.map((item) => {
 				return renderItem(item);
-			})}
+			})
+			.join('')}
 		</div>
 	`;
 }
