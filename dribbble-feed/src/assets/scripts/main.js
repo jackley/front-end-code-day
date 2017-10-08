@@ -17,10 +17,10 @@ const DOM = {
 	body: document.body,
 
 	// main container
-	mainContainer: document.querySelector('[role="main"]'),
+	mainContainer: document.querySelector('[data-js-main-containier]'),
 
 	// button to hook click event into
-	button: document.querySelector('#load-shots'),
+	button: document.querySelector('[data-js-load-shots-button]'),
 
 	// container for the templated HTML
 	feedContainer: document.querySelector('#dribbble-feed')
